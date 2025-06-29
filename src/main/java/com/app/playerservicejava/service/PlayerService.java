@@ -18,7 +18,9 @@ public class PlayerService {
     private PlayerRepository playerRepository;
 
     public Players getPlayers() {
+        LOGGER.info("Get Players from API");
         Players players = new Players();
+
         playerRepository.findAll()
                 .forEach(players.getPlayers()::add);
         return players;

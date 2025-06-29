@@ -34,6 +34,7 @@ public class ChatController {
 
     @GetMapping("/list-models")
     public ResponseEntity<List<Model>> listModels() throws OllamaBaseException, IOException, URISyntaxException, InterruptedException {
+        LOGGER.info("listModels");
         List<Model> models = chatClientService.listModels();
         return ResponseEntity.ok(models);
     }
