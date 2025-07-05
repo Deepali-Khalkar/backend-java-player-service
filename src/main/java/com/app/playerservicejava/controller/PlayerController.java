@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.security.access.prepost.PreAuthorize;
+
 
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -24,11 +26,13 @@ public class PlayerController {
     private PlayerService playerService;
 
 
+    @PreAuthorize("hasRole('USER')") // Only users with role USER can access
     @RequestMapping(method = RequestMethod.GET)
-    public  ResponseEntity<Players> getAllPlayers() {
+    public ResponseEntity<Players> getAllPlayers() {
         Players players = playerService.getAllPlayers();
         return ResponseEntity.ok(players);
     }
+
 
     @RequestMapping(method = RequestMethod.GET  , path = "/browse")
     public ResponseEntity<Page<Player>> getAllPlayersPagination(

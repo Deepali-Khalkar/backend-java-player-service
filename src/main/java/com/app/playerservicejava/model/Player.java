@@ -1,9 +1,13 @@
 package com.app.playerservicejava.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name="PLAYERS")
+@Getter
+@Setter
 public class Player {
 
     @Id
@@ -273,4 +277,6 @@ public class Player {
     public void setBbrefId(String bbrefId) {
         this.bbrefId = bbrefId;
     }
+
+
 }
