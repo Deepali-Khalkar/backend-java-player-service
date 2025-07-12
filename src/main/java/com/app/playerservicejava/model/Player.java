@@ -1,14 +1,18 @@
 package com.app.playerservicejava.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name="PLAYERS")
+@Getter
+@Setter
 public class Player {
 
     @Id
     @Column(name = "PLAYERID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String playerId;
 
     @Column(name = "BIRTHYEAR")

@@ -15,11 +15,27 @@ spring:
   h2:
     console:
       enabled: true
+      path: /h2-console
 
 server:
   port: 8080
   include-debug-info: true
   error:
     include-message: always
+
+management:
+  server:
+    port: 8080  # Optional: Expose actuator endpoints on a separate port.
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, prometheus, env, beans, httptrace
+  endpoint:
+    health:
+      show-details: always   # Show all health details (instead of just "UP/DOWN").
+  metrics:
+    export:
+      simple:
+        enabled: true        # Enable basic metrics exporter.
 
 
