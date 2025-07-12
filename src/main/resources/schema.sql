@@ -1,4 +1,31 @@
 DROP TABLE IF EXISTS PLAYERS;
 
 -- Create a table from the csv
-CREATE TABLE PLAYERS AS SELECT * FROM CSVREAD('Player.csv');
+--CREATE TABLE PLAYERS AS SELECT * FROM CSVREAD('Player.csv');
+--
+-- CREATE TABLE IF NOT EXISTS PLAYERS (
+--     playerID VARCHAR(50) PRIMARY KEY,
+--     birthYear SMALLINT,
+--     birthMonth TINYINT,
+--     birthDay TINYINT,
+--     birthCountry VARCHAR(100),
+--     birthState VARCHAR(100),
+--     birthCity VARCHAR(100),
+--     deathYear SMALLINT,
+--     deathMonth TINYINT,
+--     deathDay TINYINT,
+--     deathCountry VARCHAR(100),
+--     deathState VARCHAR(100),
+--     deathCity VARCHAR(100),
+--     nameFirst VARCHAR(100),
+--     nameLast VARCHAR(100),
+--     nameGiven VARCHAR(100),
+--     weight SMALLINT,
+--     height SMALLINT,
+--     bats VARCHAR(1),
+--     throws VARCHAR(1),
+--     debut DATE,
+--     finalGame DATE,
+--     retroID VARCHAR(50),
+--     bbrefID VARCHAR(50)
+--     );
