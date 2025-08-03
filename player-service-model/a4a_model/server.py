@@ -14,7 +14,7 @@ from pydantic import BaseModel
 nn_model = joblib.load("team_model.joblib")
 player_db = pd.read_csv("features_db.csv")
 all_players = set(player_db["playerID"])
-features = ["birthZ", "heightZ", "weightZ", "batsN", "throwsN"]
+features = ["heightZ", "weightZ", "batsN", "throwsN"]
 
 @dataclasses.dataclass
 class Stats:
@@ -27,7 +27,7 @@ class Stats:
 player_stats = {
     "height": Stats(player_db["height"].mean(), player_db["height"].std()),
     "weight": Stats(player_db["weight"].mean(), player_db["weight"].std()),
-    "birthFraction": Stats(player_db["birthFraction"].mean(), player_db["birthFraction"].std()),
+    #"birthFraction": Stats(player_db["birthFraction"].mean(), player_db["birthFraction"].std()),
 }
 
 # list of feedback exclusions
@@ -97,8 +97,8 @@ def generate_team(body: TeamGenerateInput) -> TeamGenerateOutput:
         throwsN = 1.0 if body.features.throws == 'R' else -1.0 if body.features.throws == 'L' else 0.0
         heightZ = player_stats["height"].z(body.features.height) if body.features.height is not None else 0.0
         weightZ = player_stats["weight"].z(body.features.weight) if body.features.weight is not None else 0.0
-        birthZ = player_stats["birthFraction"].z(body.features.birth_year) if body.features.birth_year is not None else 0.0
-        seed_features = np.array([birthZ, heightZ, weightZ, batsN, throwsN]).reshape(1, -1)
+        # birthZ = player_stats["birthFraction"].z(body.features.birth_year) if body.features.birth_year is not None else 0.0
+        seed_features = np.array([ heightZ, weightZ, batsN, throwsN]).reshape(1, -1)
     else:
         raise TeamException("The payload must include either seed_id or features")
 
